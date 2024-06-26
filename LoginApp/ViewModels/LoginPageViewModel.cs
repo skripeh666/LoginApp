@@ -51,19 +51,28 @@ namespace LoginApp.ViewModels
 
         private async void OnLogin()
         {
-            var user = _authenticationService.Authenticate(Username, Password);
-            if (user != null)
+            if (!string.IsNullOrWhiteSpace(Username) || !string.IsNullOrWhiteSpace(Password))
             {
-                HasError = false;
-                var navigationParams = new NavigationParameters
+
+                var user = _authenticationService.Authenticate(Username, Password);
+                if (user != null)
+                {
+                    HasError = false;
+                    var navigationParams = new NavigationParameters
                 {
                     { "user", user }
                 };
-                await _navigationService.NavigateAsync("/NavigationPage/HomePage", navigationParams);
+                    await _navigationService.NavigateAsync("/NavigationPage/HomePage", navigationParams);
+                }
+                else
+                {
+                    ErrorMessage = "Nome de usuário ou senha inválidos.";
+                    HasError = true;
+                }
             }
             else
             {
-                ErrorMessage = "Nome de usuário ou senha inválidos.";
+                ErrorMessage = "Informe todos os campos.";
                 HasError = true;
             }
         }

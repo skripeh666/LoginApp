@@ -37,14 +37,20 @@ namespace LoginApp.ViewModels
             set => SetProperty(ref _tipo, value);
         }
 
-        public ObservableCollection<Usuario> Usuarios { get; }
+        private ObservableCollection<Usuario> _usuarios;
+
+        public ObservableCollection<Usuario> Usuarios
+        {
+            get => _usuarios;
+            set => SetProperty(ref _usuarios, value);
+        }
 
         public ICommand AddUsuarioCommand { get; }
         public ICommand RemoveUsuarioCommand { get; }
 
         public MainPageViewModel()
         {
-            Usuarios = new ObservableCollection<Usuario>();
+            Usuarios = new UserRepository().Usuarios;
             AddUsuarioCommand = new DelegateCommand(AddUsuario);
             RemoveUsuarioCommand = new DelegateCommand<Usuario>(RemoveUsuario);
         }

@@ -7,35 +7,18 @@
              prism:ViewModelLocator.AutowireViewModel="True">
 
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <!-- Formulário para Adicionar Usuário -->
-            <Entry Placeholder="Nome" Text="{Binding Nome}" />
-            <Entry Placeholder="Login" Text="{Binding Login}" />
-            <Entry Placeholder="Senha" Text="{Binding Senha}" IsPassword="True" />
-            <Picker Title="Tipo de Usuário" SelectedIndex="{Binding Tipo}">
-                <Picker.Items>
-                    <x:String>0 - Comum</x:String>
-                    <x:String>1 - Intermediário</x:String>
-                    <x:String>2 - Admin</x:String>
-                </Picker.Items>
-            </Picker>
-            <Button Text="Adicionar Usuário" Command="{Binding AddUsuarioCommand}" />
-
-            <!-- Lista de Usuários -->
-            <ListView ItemsSource="{Binding Usuarios}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Nome}" />
-                                <Label Text="{Binding Login}" />
-                                <Label Text="{Binding Tipo}" />
-                                <Button Text="Remover" Command="{Binding Path=BindingContext.RemoveUsuarioCommand, Source={x:Reference Name=RootPage}}" CommandParameter="{Binding .}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Image Source="https://www.b2ktech.com.br/wp-content/uploads/2022/01/painelsolar.jpg" 
+               Aspect="AspectFit"
+               HeightRequest="300" 
+               WidthRequest="300"/>
+            <Button Text="Visite nosso site"
+                Clicked="OnButtonClicked"
+                BackgroundColor="Green"
+                TextColor="White"
+                CornerRadius="20"
+                Padding="10"
+                FontAttributes="Bold"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
