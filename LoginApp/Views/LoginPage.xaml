@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             x:Class="LoginApp.Views.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="RoundedButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#8BC34A" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="20" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="HeightRequest" Value="60" />
+                <Setter Property="Margin" Value="10,5" />
+            </Style>
+            <Style x:Key="BackgroudCollor" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout BackgroundColor="#ababab" Padding="10">
+        <Entry x:Name="usernameEntry" Placeholder="Username" Text="{Binding Username}" />
+        <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True" Text="{Binding Password}" />
+        <Button Text="Login" Command="{Binding LoginCommand}" Style="{StaticResource RoundedButtonStyle}" />
+        <Label x:Name="errorMessage" Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding HasError}" />
+    </StackLayout>
+</ContentPage>

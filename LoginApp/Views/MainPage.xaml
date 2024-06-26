@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:local="clr-namespace:LoginApp.ViewModels"
+             x:Class="LoginApp.Views.MainPage"
+             prism:ViewModelLocator.AutowireViewModel="True">
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <!-- Formulário para Adicionar Usuário -->
+            <Entry Placeholder="Nome" Text="{Binding Nome}" />
+            <Entry Placeholder="Login" Text="{Binding Login}" />
+            <Entry Placeholder="Senha" Text="{Binding Senha}" IsPassword="True" />
+            <Picker Title="Tipo de Usuário" SelectedIndex="{Binding Tipo}">
+                <Picker.Items>
+                    <x:String>0 - Comum</x:String>
+                    <x:String>1 - Intermediário</x:String>
+                    <x:String>2 - Admin</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button Text="Adicionar Usuário" Command="{Binding AddUsuarioCommand}" />
+
+            <!-- Lista de Usuários -->
+            <ListView ItemsSource="{Binding Usuarios}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nome}" />
+                                <Label Text="{Binding Login}" />
+                                <Label Text="{Binding Tipo}" />
+                                <Button Text="Remover" Command="{Binding Path=BindingContext.RemoveUsuarioCommand, Source={x:Reference Name=RootPage}}" CommandParameter="{Binding .}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
